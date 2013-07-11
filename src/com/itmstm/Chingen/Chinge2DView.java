@@ -44,12 +44,33 @@ public class Chinge2DView extends View implements OnTouchListener  {
 	private Chinge mChingeLow;
 	private Chinge mChingeVeryLow;
 	private Resources mRes;
+	private int mViewHeight;
+	private int mViewWidth;
 	
 	public Chinge2DView(Context context) {
 		super( context );
 		
 		Log.d(TAG,  "Ching2DView constructor!");
 		
+		
+    }	
+	
+	public void setDebug(boolean mDebug) {
+		this.mDebug = mDebug;
+	}
+
+	@Override
+	protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+		// TODO Auto-generated method stub
+		super.onSizeChanged(w, h, oldw, oldh);
+		
+		mViewWidth = w;
+		mViewHeight = h;
+		
+		initChinge();
+	}
+
+	private void initChinge() {
 		// enable this view to receive touch event
 		this.setFocusable(true);
 		this.setFocusableInTouchMode(true);
@@ -62,7 +83,7 @@ public class Chinge2DView extends View implements OnTouchListener  {
 		mDebugLine = new DebugLine( mRes );
 		
 		// Chinge instance
-		mChingeMiddle	= new Chinge( mRes,  mDebug, 100, 10.f );
+		mChingeMiddle	= new Chinge( mRes,  mDebug, 100, 10.f, mViewWidth, mViewHeight );
 
 		
 		// default
@@ -71,16 +92,6 @@ public class Chinge2DView extends View implements OnTouchListener  {
         // for touch event debug
         mDebugMotionEvent = new DebugMotionEvent();
         mDebugMotionEvent.setDebugEnable(mDebug);
-    }	
-	
-	public void setDebug(boolean mDebug) {
-		this.mDebug = mDebug;
-	}
-
-	@Override
-	protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-		// TODO Auto-generated method stub
-		super.onSizeChanged(w, h, oldw, oldh);
 	}
 
 	@Override
@@ -146,22 +157,22 @@ public class Chinge2DView extends View implements OnTouchListener  {
 			break;
 		case MENU_HIGH_RESOLUTION:
 			if( mChingeHigh == null ) 
-				mChingeHigh 	= new Chinge( mRes,  mDebug, 200, 5.f );
+				mChingeHigh 	= new Chinge( mRes,  mDebug, 200, 5.f, mViewWidth, mViewHeight );
 			mChinge = mChingeHigh;
 			break;
 		case MENU_MIDDLE_RESOLUTION:
 			if( mChingeMiddle == null ) 
-				mChingeHigh 	= new Chinge( mRes,  mDebug, 100, 10.f );
+				mChingeHigh 	= new Chinge( mRes,  mDebug, 100, 10.f, mViewWidth, mViewHeight );
 			mChinge = mChingeMiddle;
 			break;
 		case MENU_LOW_RESOLUTION:
 			if( mChingeLow == null ) 
-				mChingeLow 		= new Chinge( mRes,  mDebug,  50, 20.f );
+				mChingeLow 		= new Chinge( mRes,  mDebug,  50, 20.f, mViewWidth, mViewHeight );
 			mChinge = mChingeLow;
 			break;
 		case MENU_VERY_LOW_RESOLUTION:
 			if( mChingeVeryLow == null )
-				mChingeVeryLow 	= new Chinge( mRes,  mDebug,  20, 50.f );
+				mChingeVeryLow 	= new Chinge( mRes,  mDebug,  20, 50.f, mViewWidth, mViewHeight );
 			mChinge = mChingeVeryLow;
 			break;
 		}

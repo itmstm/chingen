@@ -38,8 +38,14 @@ public class Chinge {
 	private Vector2D mMotionVector = new Vector2D();
 	private Vector2D mTouchedPointMotionVector = new Vector2D();
 	private float mDistance;
+	private int mViewHeight;
+	private int mViewWidth;
 	
-	public Chinge(Resources res, boolean debug, int num_points, float distance) {
+	public Chinge(Resources res, boolean debug, int num_points, float distance, int viewWidth, int viewHeight) {
+		
+		// set view size
+		mViewWidth = viewWidth;
+		mViewHeight = viewHeight;
 		
 		// Paint class for Chinge
 		mChingePaint.setColor( res.getColor( R.color.ChingeColor ));
@@ -82,8 +88,8 @@ public class Chinge {
 		float initial_h;
 		
 		for( int i=0; i<NUM_INITIAL_ITERATION; i++ ) {
-	    	initial_w = (float) rng.nextInt( 720 );
-	    	initial_h = (float) rng.nextInt( 1280 );
+	    	initial_w = (float) rng.nextInt( mViewWidth );
+	    	initial_h = (float) rng.nextInt( mViewHeight );
 	    	
 			mMotionVector.set(
 					mPts[mTouchedPointIndex].x, mPts[mTouchedPointIndex].y, 
@@ -95,8 +101,8 @@ public class Chinge {
 		
 		mTouchedPointIndex = num_points - 1;
 		for( int i=0; i<NUM_INITIAL_ITERATION; i++ ) {
-	    	initial_w = (float) rng.nextInt( 720 );
-	    	initial_h = (float) rng.nextInt( 1280 );
+	    	initial_w = (float) rng.nextInt( mViewWidth );
+	    	initial_h = (float) rng.nextInt( mViewHeight );
 	    	
 			mMotionVector.set(
 					mPts[mTouchedPointIndex].x, mPts[mTouchedPointIndex].y, 

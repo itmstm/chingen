@@ -83,11 +83,12 @@ public class Chinge2DView extends View implements OnTouchListener  {
 		mDebugLine = new DebugLine( mRes );
 		
 		// Chinge instance
-		mChingeMiddle	= new Chinge( mRes,  mDebug, 100, 10.f, mViewWidth, mViewHeight );
+		//mChingeMiddle	= new Chinge( mRes,  mDebug, 100, 10.f, mViewWidth, mViewHeight );
+		mChingeHigh 	= new Chinge( mRes,  mDebug, 200, 5.f, mViewWidth, mViewHeight );
 
 		
 		// default
-		mChinge = mChingeMiddle;
+		mChinge = mChingeHigh;
 		
         // for touch event debug
         mDebugMotionEvent = new DebugMotionEvent();
@@ -162,7 +163,7 @@ public class Chinge2DView extends View implements OnTouchListener  {
 			break;
 		case MENU_MIDDLE_RESOLUTION:
 			if( mChingeMiddle == null ) 
-				mChingeHigh 	= new Chinge( mRes,  mDebug, 100, 10.f, mViewWidth, mViewHeight );
+				mChingeMiddle 	= new Chinge( mRes,  mDebug, 100, 10.f, mViewWidth, mViewHeight );
 			mChinge = mChingeMiddle;
 			break;
 		case MENU_LOW_RESOLUTION:
@@ -181,13 +182,13 @@ public class Chinge2DView extends View implements OnTouchListener  {
 	}
 
 	public boolean onCreateOptionsMenu(Menu menu) {
-		menu.add( 0, MENU_TOGGLE_DEBUG, Menu.NONE, R.string.menu_toggle_debug).setIcon( R.drawable.ic_launcher);
-		menu.add( 0, MENU_HIGH_RESOLUTION, Menu.NONE, R.string.menu_high_resolution);
-		menu.add( 0, MENU_MIDDLE_RESOLUTION, Menu.NONE, R.string.menu_middle_resolution);
-		menu.add( 0, MENU_LOW_RESOLUTION, Menu.NONE, R.string.menu_low_resolution);
-		menu.add( 0, MENU_VERY_LOW_RESOLUTION, Menu.NONE, R.string.menu_very_low_resolution);
 		menu.add( 0, MENU_SET_NO_BG, Menu.NONE, R.string.menu_set_no_bg);
 		menu.add( 0, MENU_SET_YUTAKA, Menu.NONE, R.string.menu_set_yutaka).setIcon( R.drawable.yutaka_l);
+		//menu.add( 0, MENU_TOGGLE_DEBUG, Menu.NONE, R.string.menu_toggle_debug).setIcon( R.drawable.ic_launcher);
+		//menu.add( 0, MENU_HIGH_RESOLUTION, Menu.NONE, R.string.menu_high_resolution);
+		//menu.add( 0, MENU_MIDDLE_RESOLUTION, Menu.NONE, R.string.menu_middle_resolution);
+		//menu.add( 0, MENU_LOW_RESOLUTION, Menu.NONE, R.string.menu_low_resolution);
+		//menu.add( 0, MENU_VERY_LOW_RESOLUTION, Menu.NONE, R.string.menu_very_low_resolution);
 		//menu.add( 0, MENU_SET_MASA, Menu.NONE, R.string.menu_set_masa).setIcon( R.drawable.masa_l);
 		return true;
 	}
